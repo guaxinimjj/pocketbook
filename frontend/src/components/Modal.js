@@ -106,17 +106,28 @@ export default class CustomModal extends Component {
               />
             </FormGroup>
               <FormGroup>
-              <Label for="url">URL</Label>
+              <Label for="url">url</Label>
               <Input
                 type="text"
                 id="url"
                 name="url"
                 value={this.state.activeItem.url}
                 onChange={this.handleChange}
-                placeholder="Enter street"
+                placeholder="Enter url"
               />
             </FormGroup>
 
+               <FormGroup>
+              <Label for="image">IMG</Label>
+              <Input
+                type="file"
+                id="image"
+                name="image"
+                value={this.state.activeItem.image}
+                onChange={this.handleChange}
+                placeholder="Enter image"
+              />
+            </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>

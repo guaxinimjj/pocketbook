@@ -1,8 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
-# Create your models here.
-
 
 class User(models.Model):
     """ User db models, for address book."""
@@ -13,8 +11,8 @@ class User(models.Model):
     country = models.CharField(max_length=20, db_index=True, null=True, blank=True)
     town = models.CharField(max_length=20, db_index=True, null=True, blank=True)
     street = models.CharField(max_length=30, db_index=True, null=True, blank=True)
-    url = models.URLField(blank=True)
-    image = models.ImageField(blank=True, upload_to="frontend/images/")
+    url = models.URLField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to="frontend/images/")
 
     class Meta:
         constraints = [

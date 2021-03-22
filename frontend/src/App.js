@@ -32,7 +32,7 @@ class App extends Component {
     if(this.state.searchField !== prevState.searchField) {
       // TODO: past code here to update todoList after searchField changed
       axios
-          .get(`api/v1/users/?first_name=${this.state.searchField}`)
+          .get(`api/v1/users/?search=${this.state.searchField}`)
           .then((res) => this.setState({todoList: res.data}))
           .catch((err) => console.log('Error! ', err))
       console.log('entered filter: ', this.state.searchField)
@@ -56,7 +56,7 @@ class App extends Component {
     const bodyFormData = new FormData();
 
       for(const [key, value] of Object.entries(item)){
-        if(key === 'image') {
+        if(key === 'image' && !value) {
           bodyFormData.append(key, '')
         } else {
           bodyFormData.append(key, value)
@@ -110,7 +110,7 @@ return(
         <div className="col-1">{item.town}</div>
         <div className="col-2">{item.street}</div>
         <div className="col-2"><a href={item.url}>link</a></div>
-        <div className="col-1"><img src={item.image} alt="IMG"/></div>
+        <div className="col-1"><img src={item.image} alt="картинка" /></div>
         <div className="col-2">
           <span>
             <button

@@ -1,3 +1,4 @@
+from rest_framework import filters
 from rest_framework.mixins import (
     CreateModelMixin,
     DestroyModelMixin,
@@ -6,10 +7,7 @@ from rest_framework.mixins import (
     UpdateModelMixin,
 )
 from rest_framework.viewsets import GenericViewSet
-from django_filters.rest_framework import DjangoFilterBackend
 
-
-from pocketbook.filters import UserFilter
 from pocketbook.models import User
 from pocketbook.serializers import UserSerializer
 
@@ -23,10 +21,8 @@ class UserViewSet(
     GenericViewSet,
 ):
     ordering = ["-id"]
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = UserFilter
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
-
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["first_name", "last_name", "country", "town", "street"]
